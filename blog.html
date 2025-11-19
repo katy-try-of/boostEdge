@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Blog – BoostEdge</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-[#F4F6F8] text-slate-900">
+
+<!-- NAVBAR (MISMO QUE EN INDEX) -->
+<header class="bg-white shadow-sm mb-10">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
+
+    <a href="index.html" class="flex items-center gap-2">
+      <img src="imagenes/logo.png" alt="BoostEdge Logo" class="h-16 w-auto">
+    </a>
+
+    <nav class="hidden md:flex gap-8 text-sm font-medium text-slate-600">
+      <a href="index.html#one" class="hover:text-[#1FB6FF]">Productos</a>
+      <a href="index.html#por-que" class="hover:text-[#1FB6FF]">Por qué BoostEdge</a>
+      <a href="blog.html" class="hover:text-[#1FB6FF] text-[#1FB6FF] font-semibold">Blog</a>
+    </nav>
+
+    <a href="carrito.html" class="relative">
+      <img src="imagenes/carrito.png" class="w-11 h-11">
+      <span id="cart-count" class="absolute -top-2 -right-2 bg-[#1FB6FF] text-white text-xs rounded-full px-2 py-0.5">0</span>
+    </a>
+  </div>
+</header>
+
+<!-- CONTENIDO -->
+<main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+  <h1 class="text-3xl font-bold text-[#0F2D47] mb-6">Blog BoostEdge</h1>
+  <p class="text-slate-600 mb-10">Últimas guías, consejos y novedades del mundo de la informática.</p>
+
+  <!-- GRID DE ARTICULOS -->
+  <div class="grid md:grid-cols-3 gap-8">
+
+    <!-- ARTICULO 1 -->
+    <a href="entradasBlog/blog-articulo1.html" class="bg-white rounded-2xl shadow hover:shadow-lg transition overflow-hidden">
+      <img src="imagenes/blog1.png" class="w-full h-40 object-cover">
+      <div class="p-5">
+        <p class="text-xs text-[#1FB6FF] font-semibold mb-1">15 Nov 2025</p>
+        <h3 class="font-semibold text-[#0F2D47] text-lg mb-2">Cómo elegir el ordenador ideal para estudiar</h3>
+        <p class="text-sm text-slate-600">La guía definitiva para estudiantes que quieren rendimiento sin gastar de más.</p>
+      </div>
+    </a>
+
+    <!-- ARTICULO 2 (NUEVO) -->
+    <a href="entradasBlog/blog-articulo2.html" class="bg-white rounded-2xl shadow hover:shadow-lg transition overflow-hidden">
+      <img src="imagenes/blog2.png" class="w-full h-40 object-cover">
+      <div class="p-5">
+        <p class="text-xs text-[#1FB6FF] font-semibold mb-1">02 Nov 2025</p>
+        <h3 class="font-semibold text-[#0F2D47] text-lg mb-2">Cómo mejorar el rendimiento de tu portátil sin gastar dinero</h3>
+        <p class="text-sm text-slate-600">Trucos eficaces para acelerar tu PC: limpieza, optimización y ajustes clave.</p>
+      </div>
+    </a>
+
+    <!-- ARTICULO 3 (NUEVO) -->
+    <a href="entradasBlog/blog-articulo3.html" class="bg-white rounded-2xl shadow hover:shadow-lg transition overflow-hidden">
+      <img src="imagenes/blog3.png" class="w-full h-40 object-cover">
+      <div class="p-5">
+        <p class="text-xs text-[#1FB6FF] font-semibold mb-1">28 Oct 2025</p>
+        <h3 class="font-semibold text-[#0F2D47] text-lg mb-2">¿Debo cambiar de portátil? Señales claras para decidir</h3>
+        <p class="text-sm text-slate-600">Cuando un equipo empieza a fallar o quedarse corto, estas pistas lo delatan.</p>
+      </div>
+    </a>
+
+  </div>
+</main>
+
+</body>
+</html>
