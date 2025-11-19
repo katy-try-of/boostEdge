@@ -208,22 +208,9 @@
 
   let subtotal = 0;
 
-  // calcular subtotal con descuentos individuales (One y Pro)
-  cart.forEach(item => {
-    const discount = getProductDiscount(item.name); 
-    const priceOriginal = item.price * item.quantity;
-    const priceFinal = priceOriginal * (1 - discount / 100);
-    subtotal += priceFinal;
-  });
-
-    function updateTotals() {
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-  let subtotal = 0;
-
   // === 1. Calcular subtotal con descuentos individuales (One y Pro) ===
   cart.forEach(item => {
-    const discount = getProductDiscount(item.name); 
+    const discount = getProductDiscount(item.name);
     const priceOriginal = item.price * item.quantity;
     const priceFinal = priceOriginal * (1 - discount / 100);
     subtotal += priceFinal;
@@ -236,7 +223,15 @@
   const cantidadPro = proItems.reduce((acc, item) => acc + item.quantity, 0);
 
   if (cantidadPro >= 10) {
-    descuentoVolumen = subtotal * 0.05; // 5% de descuento SOLO sobre el Pro
+    // descuento solo sobre el valor de los Pro, NO del resto
+    const subtotalPro = proItems.reduce((acc, item) => {
+      const d = getProductDiscount(item.name);
+      const priceOriginal = item.price * item.quantity;
+      const priceFinal = priceOriginal * (1 - d / 100);
+      return acc + priceFinal;
+    }, 0);
+
+    descuentoVolumen = subtotalPro * 0.05;
   }
 
   // Mostrar/ocultar fila de descuento por volumen
@@ -260,7 +255,6 @@
   document.getElementById("iva").textContent = iva.toFixed(2) + " €";
   document.getElementById("total").textContent = total.toFixed(2) + " €";
 }
-
 
     /* === Comprar === */
     function comprar() {
