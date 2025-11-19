@@ -10,7 +10,7 @@
 <body class="bg-[#F4F6F8] text-slate-900">
 
   <!-- NAVBAR -->
-  <header class="bg-white shadow-sm">
+  <header class="bg-white shadow-sm sticky top-0 z-50">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
 
       <!-- LOGO (IMAGEN REAL) -->
@@ -18,7 +18,7 @@
         <img 
           src="imagenes/logo.png" 
           alt="BoostEdge Logo" 
-          class="h-24 w-auto"
+          class="h-14 w-auto"
         />
       </a>
 
@@ -49,12 +49,18 @@
       </a>
 
     </div>
+    </div>  <!-- ESTE DIV FALTABA -->
   </header>
 
 
   <main>
     <!-- HERO -->
     <section class="bg-white">
+      <!-- BANNER OFERTA BLACK FRIDAY -->
+      <div id="banner-oferta" class="hidden bg-[#0F2D47] text-white text-center py-5 text-sm font-medium">
+        🎉 Black Friday: Disfruta de descuentos exclusivos en todos los BoostEdge · Del 15 al 30 de noviembre
+      </div>
+
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20 grid lg:grid-cols-2 gap-10 items-center">
         <!-- Texto -->
         <div class="space-y-6">
@@ -122,7 +128,11 @@
 
       <div class="grid md:grid-cols-2 gap-8">
         <!-- ONE -->
-        <article class="bg-white rounded-3xl border border-slate-100 shadow-sm hover:shadow-lg transition overflow-hidden">
+        <article class="relative bg-white rounded-3xl border border-slate-100 shadow-sm hover:shadow-lg transition overflow-hidden">
+          <span 
+            id="tag-one" class="hidden absolute top-4 right-4 bg-red-500 text-white text-sm font-bold px-4 py-1.5 rounded-full shadow-lg tracking-wide">
+            -20% Black Friday
+          </span>
           <div class="p-6 flex flex-col h-full">
             <div class="flex items-center gap-3 mb-4">
               <div class="w-10 h-10 rounded-2xl bg-[#E3F5FF] flex items-center justify-center">
@@ -167,7 +177,11 @@
         </article>
 
         <!-- PRO -->
-        <article id="pro" class="bg-[#0F2D47] rounded-3xl shadow-xl overflow-hidden border border-slate-900/60">
+        <article id="pro" class="relative bg-[#0F2D47] rounded-3xl shadow-xl overflow-hidden border border-slate-900/60">
+          <span 
+            id="tag-pro" class="hidden absolute top-4 right-4 bg-red-500 text-white text-sm font-bold px-4 py-1.5 rounded-full shadow-lg tracking-wide">
+            -10% Black Friday
+          </span>
           <div class="p-6 flex flex-col h-full text-white">
             <div class="flex items-center gap-3 mb-4">
               <div class="w-10 h-10 rounded-2xl bg-[#1FB6FF]/10 flex items-center justify-center">
@@ -351,46 +365,64 @@
         });
       </script>
 
-    <!-- PROMOS -->
+    <!-- PROMOS (Versión unificada con contenido segmentado) -->
     <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
       <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
         <div>
-          <h2 class="text-2xl sm:text-3xl font-bold text-[#0F2D47]">Promos que de verdad importan</h2>
+          <h2 class="text-2xl sm:text-3xl font-bold text-[#0F2D47]">Promociones según tus necesidades</h2>
           <p class="text-sm sm:text-base text-slate-600 mt-1">
-            Campañas pensadas para los momentos clave del año.
+            Ofertas diseñadas para estudiantes, hogares, empresas y profesionales.
           </p>
         </div>
       </div>
+
       <div class="grid md:grid-cols-3 gap-6">
-        <article class="bg-gradient-to-br from-[#1FB6FF] to-[#0A73B8] rounded-3xl text-white p-5 flex flex-col justify-between shadow-lg">
+
+        <!-- TARJETA 1: Estudiantes -->
+        <article class="bg-white rounded-3xl p-6 shadow border border-slate-100 flex flex-col justify-between">
           <div>
-            <h3 class="text-lg font-semibold mb-1">Vuelta al cole</h3>
-            <p class="text-xs text-slate-100 mb-4">
-              Packs de portátiles y accesorios con condiciones especiales para estudiantes.
-            </p>
+            <h3 class="text-lg font-semibold text-[#0F2D47] mb-2">Para estudiantes y particulares</h3>
+            <ul class="space-y-2 text-sm text-slate-700">
+              <li>· Descuentos estacionales: vuelta al cole, Black Friday, Navidad, rebajas.</li>
+              <li>· Promos exclusivas para estudiantes (especial BoostEdge One).</li>
+              <li>· Packs temáticos: portátil + periféricos, garantía ampliada, accesorios.</li>
+              <li>· Promos rápidas en Stories Ads y campañas flash.</li>
+              <li>· Acceso directo a ofertas mediante QR en carteles y tiendas físicas.</li>
+            </ul>
           </div>
-          <p class="text-xs font-semibold uppercase tracking-[0.18em]">Septiembre · Octubre</p>
+          <p class="text-xs font-semibold text-[#1FB6FF] uppercase tracking-[0.18em] mt-4">Todo el año</p>
         </article>
 
-        <article class="bg-white rounded-3xl p-5 flex flex-col justify-between shadow-sm border border-slate-100">
+        <!-- TARJETA 2: Empresas -->
+        <article class="bg-[#0F2D47] rounded-3xl p-6 shadow text-white border border-slate-800/40 flex flex-col justify-between">
           <div>
-            <h3 class="text-lg font-semibold text-[#0F2D47] mb-1">Descuento estudiantes</h3>
-            <p class="text-xs text-slate-600 mb-4">
-              Descuentos exclusivos presentando carnet y condiciones especiales para centros educativos.
-            </p>
+            <h3 class="text-lg font-semibold mb-2">Para empresas y profesionales</h3>
+            <ul class="space-y-2 text-sm text-white/90">
+              <li>· Descuentos por volumen para oficinas y equipos de trabajo.</li>
+              <li>· Condiciones especiales en programas de renovación tecnológica.</li>
+              <li>· Packs corporativos: ordenador + monitor + periféricos.</li>
+              <li>· Ampliación de garantía profesional a precio reducido.</li>
+              <li>· Servicios extra: instalación, mantenimiento y soporte avanzado.</li>
+            </ul>
           </div>
-          <p class="text-xs font-semibold text-[#1FB6FF] uppercase tracking-[0.18em]">Todo el año</p>
+          <p class="text-xs font-semibold text-[#1FB6FF] uppercase tracking-[0.18em] mt-4">Condiciones especiales</p>
         </article>
 
-        <article class="bg-[#0F2D47] rounded-3xl p-5 flex flex-col justify-between shadow-lg text-white">
+        <!-- TARJETA 3: Bonificaciones y acuerdos -->
+        <article class="bg-gradient-to-br from-[#1FB6FF] to-[#0A73B8] rounded-3xl p-6 shadow-lg text-white flex flex-col justify-between">
           <div>
-            <h3 class="text-lg font-semibold mb-1">Black Friday & campañas flash</h3>
-            <p class="text-xs text-slate-200 mb-4">
-              Ofertas puntuales en unidades seleccionadas, solo online.
-            </p>
+            <h3 class="text-lg font-semibold mb-2">Bonificaciones y acuerdos</h3>
+            <ul class="space-y-2 text-sm text-white/90">
+              <li>· Descuentos por fidelización y renovaciones anuales.</li>
+              <li>· Condiciones especiales para centros educativos y academias.</li>
+              <li>· Promos exclusivas por campañas semestrales.</li>
+              <li>· Acceso prioritario a unidades limitadas o reacondicionadas premium.</li>
+              <li>· Consultoría gratuita para optimizar equipos de trabajo.</li>
+            </ul>
           </div>
-          <p class="text-xs font-semibold text-[#1FB6FF] uppercase tracking-[0.18em]">Fechas limitadas</p>
+          <p class="text-xs font-semibold uppercase tracking-[0.18em] mt-4">Disponibilidad limitada</p>
         </article>
+
       </div>
     </section>
 
@@ -438,7 +470,7 @@
     <!-- NEWSLETTER -->
     <section id="newsletter" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
       <div class="bg-[#1FB6FF] rounded-3xl p-8 sm:p-12 text-white shadow-xl">
-        
+
         <div class="max-w-2xl mx-auto text-center space-y-6">
           <h2 class="text-2xl sm:text-3xl font-bold">Suscríbete a nuestra newsletter</h2>
           <p class="text-sm sm:text-base text-[#EAF9FF]">
@@ -470,7 +502,7 @@
       
       </div>
     </section>
-    
+
     <script>
     function subscribeNewsletter() {
       const email = document.getElementById("newsletter-email").value.trim();
@@ -489,7 +521,7 @@
       document.getElementById("newsletter-email").value = "";
     }
     </script>
-    
+
     <!-- CONTACTO -->
     <section id="contacto" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
       <div class="bg-[#0F2D47] rounded-3xl p-8 sm:p-10 text-white grid md:grid-cols-2 gap-8 items-center shadow-2xl">
@@ -588,6 +620,54 @@
   updateCartBadge();
 </script>
 
+<script>
+
+function aplicarOferta() {
+  const offer = localStorage.getItem("active_offer");
+  
+  if (!offer) {
+    alert("No hay ninguna oferta activa en este momento.");
+    return;
+  }
+
+  if (offer === "black_friday_10") {
+    localStorage.setItem("cart_discount", "10");
+    alert("¡Descuento del 10% aplicado! Revísalo en tu carrito.");
+  }
+}
+
+
+</script>
+<script>
+function checkActiveOffer() {
+  const hoy = new Date();
+  const mes = hoy.getMonth() + 1;
+  const dia = hoy.getDate();
+
+  const banner = document.getElementById("banner-oferta");
+  const tagOne = document.getElementById("tag-one");
+  const tagPro = document.getElementById("tag-pro");
+
+  const active = (mes === 11 && dia >= 15 && dia <= 30);
+
+  if (active) {
+    banner.classList.remove("hidden");
+    tagOne.classList.remove("hidden");   // ← MOSTRAR ETIQUETA
+    tagPro.classList.remove("hidden");   // ← MOSTRAR ETIQUETA
+    localStorage.setItem("active_offer", "black_friday_10");
+  } else {
+    banner.classList.add("hidden");
+    tagOne.classList.add("hidden");      // ← OCULTAR SI NO ES VÁLIDA
+    tagPro.classList.add("hidden");      // ← OCULTAR SI NO ES VÁLIDA
+    localStorage.removeItem("active_offer");
+  }
+}
+
+checkActiveOffer();
+
+
+checkActiveOffer();
+</script>
 
 </body>
 </html>
