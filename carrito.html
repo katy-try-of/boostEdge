@@ -60,6 +60,11 @@
         <span>IVA (21%)</span>
         <span id="iva">0 €</span>
       </div>
+      <div id="volumen-row" class="flex justify-between text-sm mb-2 text-green-600 hidden">
+        <span>Descuento por volumen (10+ BoostEdge Pro)</span>
+        <span id="volumen-desc">-0 €</span>
+      </div>
+      
 
       <div class="border-t my-3"></div>
 
@@ -79,72 +84,70 @@
 
 
   <script>
-    
+
     /* === Normalizar datos del carrito === */
     function fixCartData() {
       let cart = JSON.parse(localStorage.getItem("cart")) || [];
-    
+
       cart = cart.map(item => ({
         ...item,
         quantity: (typeof item.quantity === "number" && item.quantity > 0)
           ? item.quantity
           : 1
       }));
-  
+
       localStorage.setItem("cart", JSON.stringify(cart));
     }
-    
-    
-    
+
     /* === Descuentos por producto (Black Friday) === */
     function getProductDiscount(name) {
-    
+
       const offer = localStorage.getItem("active_offer");
-    
+
       if (offer !== "black_friday_10") return 0;  
-    
+
       // aquí definimos descuentos independientes
       if (name === "BoostEdge One") return 20;
       if (name === "BoostEdge Pro") return 10;
-    
+
       return 0;
     }
-    
-    
-    
+
+
+
     /* === Cargar carrito === */
     function loadCart() {
-    
+
       fixCartData();
       let cart = JSON.parse(localStorage.getItem("cart")) || [];
-    
+
       const list = document.getElementById("cart-items");
       const summary = document.getElementById("cart-summary");
       const badge = document.getElementById("cart-count");
-    
+
       list.innerHTML = "";
-    
+
       if (cart.length === 0) {
         list.innerHTML = `<p class="text-slate-600 text-center text-lg">Tu carrito está vacío.</p>`;
         summary.classList.add("hidden");
         badge.textContent = 0;
         return;
       }
-  
+
       badge.textContent = cart.reduce((acc, item) => acc + item.quantity, 0);
-  
+
       cart.forEach((item, index) => {
         const discount = getProductDiscount(item.name);
         const priceOriginal = item.price * item.quantity;
         const priceFinal = priceOriginal * (1 - discount / 100);
-    
+
         const row = document.createElement("div");
         row.className = "bg-white p-4 rounded-2xl shadow flex justify-between items-center";
-    
+
         row.innerHTML = `
           <div>
             <p class="font-semibold text-[#0F2D47]">${item.name}</p>
-        
+
             ${
               discount > 0
                 ? `
@@ -158,84 +161,119 @@
                   `
             }
           </div>
-      
+
           <div class="flex items-center gap-3">
             <button class="px-3 py-1 bg-slate-200 rounded-full" onclick="changeQty(${index}, -1)">−</button>
             <span class="font-semibold">${item.quantity}</span>
             <button class="px-3 py-1 bg-slate-200 rounded-full" onclick="changeQty(${index}, 1)">+</button>
-        
+
             <button class="ml-4 text-red-500 font-bold" onclick="removeItem(${index})">🗑️</button>
           </div>
         `;
-      
+
         list.appendChild(row);
       });
-  
+
       summary.classList.remove("hidden");
       updateTotals();
     }
-    
-    
-    
+
+
+
     /* === Cambiar cantidad === */
     function changeQty(index, amount) {
       let cart = JSON.parse(localStorage.getItem("cart")) || [];
-    
+
       cart[index].quantity = Math.max(1, cart[index].quantity + amount);
-    
+
       localStorage.setItem("cart", JSON.stringify(cart));
       loadCart();
     }
-    
-    
-    
+
+
+
     /* === Eliminar producto === */
     function removeItem(index) {
       let cart = JSON.parse(localStorage.getItem("cart")) || [];
       cart.splice(index, 1);
-    
+
       localStorage.setItem("cart", JSON.stringify(cart));
       loadCart();
     }
-    
-    
-    
-    /* === Actualizar totales === */
+
+
+
     function updateTotals() {
-    
-      let cart = JSON.parse(localStorage.getItem("cart")) || [];
-    
-      let subtotal = 0;
-    
-      cart.forEach(item => {
-        const discount = getProductDiscount(item.name);
-        const priceOriginal = item.price * item.quantity;
-        const priceFinal = priceOriginal * (1 - discount / 100);
-        subtotal += priceFinal;
-      });
-  
-      const iva = subtotal * 0.21;
-      const total = subtotal + iva;
-  
-      document.getElementById("subtotal").textContent = subtotal.toFixed(2) + " €";
-      document.getElementById("iva").textContent = iva.toFixed(2) + " €";
-      document.getElementById("total").textContent = total.toFixed(2) + " €";
-    }
-    
-    
-    
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  let subtotal = 0;
+
+  // calcular subtotal con descuentos individuales (One y Pro)
+  cart.forEach(item => {
+    const discount = getProductDiscount(item.name); 
+    const priceOriginal = item.price * item.quantity;
+    const priceFinal = priceOriginal * (1 - discount / 100);
+    subtotal += priceFinal;
+  });
+
+    function updateTotals() {
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  let subtotal = 0;
+
+  // === 1. Calcular subtotal con descuentos individuales (One y Pro) ===
+  cart.forEach(item => {
+    const discount = getProductDiscount(item.name); 
+    const priceOriginal = item.price * item.quantity;
+    const priceFinal = priceOriginal * (1 - discount / 100);
+    subtotal += priceFinal;
+  });
+
+  // === 2. DESCUENTO POR VOLUMEN (SOLO BoostEdge Pro) ===
+  let descuentoVolumen = 0;
+
+  const proItems = cart.filter(p => p.name === "BoostEdge Pro");
+  const cantidadPro = proItems.reduce((acc, item) => acc + item.quantity, 0);
+
+  if (cantidadPro >= 10) {
+    descuentoVolumen = subtotal * 0.05; // 5% de descuento SOLO sobre el Pro
+  }
+
+  // Mostrar/ocultar fila de descuento por volumen
+  const volumenRow = document.getElementById("volumen-row");
+  const volumenDesc = document.getElementById("volumen-desc");
+
+  if (descuentoVolumen > 0) {
+    volumenRow.classList.remove("hidden");
+    volumenDesc.textContent = `-${descuentoVolumen.toFixed(2)} €`;
+  } else {
+    volumenRow.classList.add("hidden");
+  }
+
+  subtotal -= descuentoVolumen;
+
+  // === 3. IVA y total ===
+  const iva = subtotal * 0.21;
+  const total = subtotal + iva;
+
+  document.getElementById("subtotal").textContent = subtotal.toFixed(2) + " €";
+  document.getElementById("iva").textContent = iva.toFixed(2) + " €";
+  document.getElementById("total").textContent = total.toFixed(2) + " €";
+}
+
+
     /* === Comprar === */
     function comprar() {
       alert("El proceso de compra estará disponible próximamente.");
     }
-    
-    
-    
+
+
+
     /* === Inicio === */
     loadCart();
-    
+
     </script>
-    
+
 
 </body>
 </html>
