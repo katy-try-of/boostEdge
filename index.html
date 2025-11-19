@@ -12,24 +12,43 @@
   <!-- NAVBAR -->
   <header class="bg-white shadow-sm">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
-      <div class="flex items-center gap-2">
-        <!-- Sustituye este div por <img src="TU_LOGO.png"> si quieres -->
-        <div class="flex items-center justify-center w-9 h-9 rounded-xl bg-gradient-to-br from-[#1FB6FF] to-[#0A73B8]">
-          <span class="text-white text-xl font-bold">↗</span>
-        </div>
-        <span class="text-xl font-semibold text-[#0F2D47]">BoostEdge</span>
-      </div>
+
+      <!-- LOGO (IMAGEN REAL) -->
+      <a href="#" class="flex items-center gap-2">
+        <img 
+          src="imagenes/logo.png" 
+          alt="BoostEdge Logo" 
+          class="h-24 w-auto"
+        />
+      </a>
+
+      <!-- MENÚ -->
       <nav class="hidden md:flex gap-8 text-sm font-medium text-slate-600">
-        <a href="#one" class="hover:text-[#1FB6FF]">BoostEdge One</a>
-        <a href="#pro" class="hover:text-[#1FB6FF]">BoostEdge Pro</a>
+        <a href="#one" class="hover:text-[#1FB6FF]">Productos</a>
         <a href="#por-que" class="hover:text-[#1FB6FF]">Por qué BoostEdge</a>
         <a href="#contacto" class="hover:text-[#1FB6FF]">Contacto</a>
       </nav>
-      <a href="#contacto" class="hidden sm:inline-flex items-center px-4 py-2 rounded-full bg-[#1FB6FF] text-white text-sm font-semibold hover:bg-[#0A73B8] transition">
-        Hablar con ventas
+
+      <div class="flex items-center gap-4">
+
+      <!-- Icono carrito -->
+      <a href="carrito.html" class="relative">
+        <img src="imagenes/carrito.png" class="w-11 h-11">
+        <span id="cart-count" class="absolute -top-2 -right-2 bg-[#1FB6FF] text-white text-xs rounded-full px-2 py-0.5">
+          0
+        </span>
       </a>
+      <!-- BOTÓN -->
+      <a 
+        href="#contacto" 
+        class="hidden sm:inline-flex items-center px-4 py-2 rounded-full bg-[#1FB6FF] 
+        text-white text-sm font-semibold hover:bg-[#0A73B8] transition">
+        Contáctanos
+      </a>
+
     </div>
   </header>
+
 
   <main>
     <!-- HERO -->
@@ -41,7 +60,7 @@
             Nuevo · 3 años de garantía incluidos
           </span>
           <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#0F2D47] leading-tight">
-            Tecnología que impulsa tu día a día.
+            Tu ordenador ideal, al mejor precio.
           </h1>
           <p class="text-base sm:text-lg text-slate-600">
             Ordenadores seleccionados entre las mejores marcas. Rendimiento profesional para empresas y oficinas,
@@ -72,7 +91,7 @@
           <div class="absolute -inset-6 bg-gradient-to-br from-[#1FB6FF]/10 via-transparent to-[#0A73B8]/10 rounded-3xl blur-2xl"></div>
           <div class="relative bg-[#0F2D47] rounded-3xl overflow-hidden shadow-2xl border border-slate-800/40">
             <img
-              src="https://source.unsplash.com/featured/900x600?laptop,technology"
+              src="imagenes/ordenadores.png"
               alt="Ordenador BoostEdge"
               class="w-full h-64 sm:h-80 object-cover"
             />
@@ -132,14 +151,14 @@
               </li>
             </ul>
             <img
-              src="https://source.unsplash.com/featured/900x600?student,laptop"
+              src="imagenes/boostOne.png"
               alt="BoostEdge One"
-              class="rounded-2xl object-cover w-full h-40 mb-5"
+              class="rounded-2xl object-cover w-full max-h-84 mb-5"
             />
             <div class="mt-auto flex items-center justify-between">
               <p class="text-xs text-slate-500">Ideal para: universidad, FP y uso familiar.</p>
-              <a href="#contacto" class="text-sm font-semibold text-[#1FB6FF] hover:text-[#0A73B8]">
-                Explorar One →
+              <a href="producto-one.html" class="text-sm font-semibold text-[#1FB6FF] hover:text-[#0A73B8]">
+                Ver detalles →
               </a>
             </div>
           </div>
@@ -177,16 +196,16 @@
               </li>
             </ul>
             <img
-              src="https://source.unsplash.com/featured/900x600?office,workstation"
+              src="imagenes/boostPro.png"
               alt="BoostEdge Pro"
-              class="rounded-2xl object-cover w-full h-40 mb-5"
+              class="rounded-2xl object-cover w-full max-h-84 mb-5"
             />
             <div class="mt-auto flex items-center justify-between">
               <p class="text-xs text-slate-300">
                 Ideal para: pymes, despachos, estudios creativos.
               </p>
-              <a href="#contacto" class="text-sm font-semibold text-[#1FB6FF] hover:text-white">
-                Explorar Pro →
+              <a href="producto-pro.html" class="text-sm font-semibold text-[#1FB6FF] hover:text-[#0A73B8]">
+                Ver detalles →
               </a>
             </div>
           </div>
