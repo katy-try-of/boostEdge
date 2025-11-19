@@ -26,6 +26,8 @@
       <nav class="hidden md:flex gap-8 text-sm font-medium text-slate-600">
         <a href="#one" class="hover:text-[#1FB6FF]">Productos</a>
         <a href="#por-que" class="hover:text-[#1FB6FF]">Por qué BoostEdge</a>
+        <a href="#faq" class="hover:text-[#1FB6FF]">Preguntas frecuentes</a>
+        <a href="#resenas" class="hover:text-[#1FB6FF]">Reseñas</a>
         <a href="blog.html" class="hover:text-[#1FB6FF]">Blog</a>
       </nav>
 
@@ -393,7 +395,7 @@
     </section>
 
     <!-- TESTIMONIOS -->
-    <section class="bg-white py-14">
+    <section id="resenas" class="bg-white py-14">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center max-w-2xl mx-auto mb-10">
           <h2 class="text-2xl sm:text-3xl font-bold text-[#0F2D47] mb-2">Lo que dicen nuestros clientes</h2>
@@ -433,7 +435,61 @@
         </div>
       </div>
     </section>
-
+    <!-- NEWSLETTER -->
+    <section id="newsletter" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div class="bg-[#1FB6FF] rounded-3xl p-8 sm:p-12 text-white shadow-xl">
+        
+        <div class="max-w-2xl mx-auto text-center space-y-6">
+          <h2 class="text-2xl sm:text-3xl font-bold">Suscríbete a nuestra newsletter</h2>
+          <p class="text-sm sm:text-base text-[#EAF9FF]">
+            Recibe guías útiles, consejos para cuidar tu portátil, comparativas, ofertas 
+            y contenido exclusivo para estudiantes, profesionales y amantes de la tecnología.
+          </p>
+        
+          <div class="flex flex-col sm:flex-row gap-3 justify-center mt-6">
+            <input
+              id="newsletter-email"
+              type="email"
+              placeholder="Tu email"
+              class="px-4 py-3 rounded-full w-full sm:w-80 text-slate-800 
+                     focus:outline-none focus:ring-4 focus:ring-white/40"
+            />
+          
+            <button
+              onclick="subscribeNewsletter()"
+              class="px-6 py-3 rounded-full bg-[#0F2D47] text-white font-semibold 
+                     hover:bg-white hover:text-[#0F2D47] transition shadow-md">
+              Suscribirme
+            </button>
+          </div>
+        
+          <p class="text-[11px] text-white/80 mt-2">
+            Tranquilo, no enviamos spam. Podrás darte de baja cuando quieras.
+          </p>
+        </div>
+      
+      </div>
+    </section>
+    
+    <script>
+    function subscribeNewsletter() {
+      const email = document.getElementById("newsletter-email").value.trim();
+    
+      if (!email || !email.includes("@")) {
+        alert("Introduce un email válido.");
+        return;
+      }
+    
+      // Guardado local (puedes cambiarlo por tu API)
+      let newsletter = JSON.parse(localStorage.getItem("newsletter")) || [];
+      newsletter.push({ email, date: new Date().toISOString() });
+      localStorage.setItem("newsletter", JSON.stringify(newsletter));
+    
+      alert("¡Gracias por suscribirte! Muy pronto recibirás novedades.");
+      document.getElementById("newsletter-email").value = "";
+    }
+    </script>
+    
     <!-- CONTACTO -->
     <section id="contacto" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
       <div class="bg-[#0F2D47] rounded-3xl p-8 sm:p-10 text-white grid md:grid-cols-2 gap-8 items-center shadow-2xl">
