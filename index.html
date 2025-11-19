@@ -26,7 +26,6 @@
       <nav class="hidden md:flex gap-8 text-sm font-medium text-slate-600">
         <a href="#one" class="hover:text-[#1FB6FF]">Productos</a>
         <a href="#por-que" class="hover:text-[#1FB6FF]">Por qué BoostEdge</a>
-        <a href="#contacto" class="hover:text-[#1FB6FF]">Contacto</a>
       </nav>
 
       <div class="flex items-center gap-4">
@@ -60,17 +59,17 @@
             Nuevo · 3 años de garantía incluidos
           </span>
           <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#0F2D47] leading-tight">
-            Tu ordenador ideal, al mejor precio.
+            Tu ordenador ideal, al un precio ideal.
           </h1>
           <p class="text-base sm:text-lg text-slate-600">
             Ordenadores seleccionados entre las mejores marcas. Rendimiento profesional para empresas y oficinas,
             y la mejor relación calidad-precio para estudiantes y familias.
           </p>
           <div class="flex flex-wrap gap-3">
-            <a href="#one" class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-[#1FB6FF] text-white text-sm font-semibold shadow-md hover:bg-[#0A73B8] transition">
+            <a href="producto-one.html" class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-[#1FB6FF] text-white text-sm font-semibold shadow-md hover:bg-[#0A73B8] transition">
               Ver BoostEdge One
             </a>
-            <a href="#pro" class="inline-flex items-center justify-center px-6 py-3 rounded-full border border-[#0F2D47] text-[#0F2D47] text-sm font-semibold hover:bg-[#0F2D47] hover:text-white transition">
+            <a href="producto-pro.html" class="inline-flex items-center justify-center px-6 py-3 rounded-full border border-[#0F2D47] text-[#0F2D47] text-sm font-semibold hover:bg-[#0F2D47] hover:text-white transition">
               Ver BoostEdge Pro
             </a>
           </div>
@@ -256,7 +255,99 @@
         </div>
       </div>
     </section>
-
+      <!-- PREGUNTAS FRECUENTES -->
+      <section id="faq" class="bg-white py-14">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+          <div class="text-center max-w-2xl mx-auto mb-10">
+            <h2 class="text-2xl sm:text-3xl font-bold text-[#0F2D47] mb-2">Preguntas frecuentes</h2>
+            <p class="text-sm sm:text-base text-slate-600">
+              Resolviendo las dudas más habituales antes de elegir tu BoostEdge.
+            </p>
+          </div>
+        
+          <div class="space-y-4">
+          
+            <!-- PREGUNTA 1 -->
+            <div class="bg-[#F4F6F8] rounded-2xl p-5 cursor-pointer faq-item">
+              <div class="flex justify-between items-center">
+                <h3 class="text-sm font-semibold text-[#0F2D47]">
+                  ¿Qué diferencia hay entre BoostEdge One y BoostEdge Pro?
+                </h3>
+                <span class="text-xl text-[#1FB6FF] faq-icon">+</span>
+              </div>
+              <p class="faq-answer hidden text-sm text-slate-600 mt-3">
+                BoostEdge One está pensado para estudiantes y uso diario: estudiar, trabajar en la nube,
+                navegar, videollamadas y tareas medias.  
+                BoostEdge Pro está diseñado para empresas, multitarea intensiva, software profesional,
+                videollamadas constantes y cargas altas.
+              </p>
+            </div>
+          
+            <!-- PREGUNTA 2 -->
+            <div class="bg-[#F4F6F8] rounded-2xl p-5 cursor-pointer faq-item">
+              <div class="flex justify-between items-center">
+                <h3 class="text-sm font-semibold text-[#0F2D47]">
+                  ¿Los equipos vienen con garantía?
+                </h3>
+                <span class="text-xl text-[#1FB6FF] faq-icon">+</span>
+              </div>
+              <p class="faq-answer hidden text-sm text-slate-600 mt-3">
+                Sí. Todos nuestros ordenadores incluyen 3 años de garantía,
+                que cubren fallos de hardware, soporte técnico y sustitución cuando procede.
+              </p>
+            </div>
+          
+            <!-- PREGUNTA 3 -->
+            <div class="bg-[#F4F6F8] rounded-2xl p-5 cursor-pointer faq-item">
+              <div class="flex justify-between items-center">
+                <h3 class="text-sm font-semibold text-[#0F2D47]">
+                  ¿Hacéis envíos a toda España?
+                </h3>
+                <span class="text-xl text-[#1FB6FF] faq-icon">+</span>
+              </div>
+              <p class="faq-answer hidden text-sm text-slate-600 mt-3">
+                Sí, enviamos a toda España en 24/48 horas según disponibilidad de stock.
+              </p>
+            </div>
+          
+            <!-- PREGUNTA 4 -->
+            <div class="bg-[#F4F6F8] rounded-2xl p-5 cursor-pointer faq-item">
+              <div class="flex justify-between items-center">
+                <h3 class="text-sm font-semibold text-[#0F2D47]">
+                  ¿Puedo recibir asesoramiento antes de comprar?
+                </h3>
+                <span class="text-xl text-[#1FB6FF] faq-icon">+</span>
+              </div>
+              <p class="faq-answer hidden text-sm text-slate-600 mt-3">
+                Por supuesto. Nuestro equipo técnico te recomienda el modelo ideal según uso:
+                estudio, oficina, diseño, programación o empresas.
+              </p>
+            </div>
+          
+          </div>
+        </div>
+      </section>
+      
+      <script>
+        // Sistema de acordeón
+        document.querySelectorAll(".faq-item").forEach(item => {
+          item.addEventListener("click", () => {
+            const answer = item.querySelector(".faq-answer");
+            const icon = item.querySelector(".faq-icon");
+          
+            answer.classList.toggle("hidden");
+          
+            // Animar icono
+            if (answer.classList.contains("hidden")) {
+              icon.textContent = "+";
+            } else {
+              icon.textContent = "−";
+            }
+          });
+        });
+      </script>
+      
     <!-- PROMOS -->
     <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
       <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
@@ -313,21 +404,21 @@
         <div class="grid md:grid-cols-2 gap-6">
           <article class="bg-[#F4F6F8] rounded-3xl p-5 flex flex-col gap-4">
             <div class="flex items-center gap-3">
-              <img src="https://source.unsplash.com/featured/80x80?man,portrait" alt="Cliente" class="w-10 h-10 rounded-full object-cover" />
+              <img src="imagenes/cliente1.png" alt="Cliente" class="w-10 h-10 rounded-full object-cover" />
               <div>
                 <p class="text-sm font-semibold text-[#0F2D47]">Laura Gómez</p>
                 <p class="text-xs text-slate-500">Directora de una agencia creativa</p>
               </div>
             </div>
             <p class="text-sm text-slate-700">
-              “Hemos renovado todo el parque informático con BoostEdge Pro. Desde entonces,
+              “Hemos renovado todo el equipo informático con BoostEdge Pro. Desde entonces,
               0 problemas y un soporte que responde rápido.”
             </p>
           </article>
 
           <article class="bg-[#F4F6F8] rounded-3xl p-5 flex flex-col gap-4">
             <div class="flex items-center gap-3">
-              <img src="https://source.unsplash.com/featured/80x80?student" alt="Cliente estudiante" class="w-10 h-10 rounded-full object-cover" />
+              <img src="imagenes/cliente3.png" alt="Cliente estudiante" class="w-10 h-10 rounded-full object-cover" />
               <div>
                 <p class="text-sm font-semibold text-[#0F2D47]">Diego Martín</p>
                 <p class="text-xs text-slate-500">Estudiante de ingeniería</p>
@@ -346,10 +437,10 @@
     <section id="contacto" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
       <div class="bg-[#0F2D47] rounded-3xl p-8 sm:p-10 text-white grid md:grid-cols-2 gap-8 items-center shadow-2xl">
         <div>
-          <h2 class="text-2xl sm:text-3xl font-bold mb-3">¿Necesitas renovar tu parque informático?</h2>
+          <h2 class="text-2xl sm:text-3xl font-bold mb-3">¿Necesitas renovar tu equipo informático?</h2>
           <p class="text-sm sm:text-base text-slate-200 mb-6">
-            Cuéntanos qué tipo de usuarios tienes (estudiantes, oficina, diseño, programación)
-            y te proponemos una configuración equilibrada de BoostEdge One y Pro.
+            Cuéntanos qué tipo de usuario eres (estudiantes, oficina, diseño, programación)
+            y te proponemos el mejor equipo para ti, ya sea BoostEdge One y Pro.
           </p>
           <ul class="space-y-2 text-sm text-slate-200 mb-4">
             <li class="flex gap-2">
@@ -389,7 +480,7 @@
             Enviar consulta
           </button>
           <p class="text-[11px] text-slate-500 text-center">
-            *Formulario de ejemplo. Conéctalo a tu backend o servicio de email.
+            *Formulario de ejemplo.
           </p>
         </form>
       </div>
@@ -401,7 +492,7 @@
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs sm:text-sm">
       <div class="flex items-center gap-2">
         <span class="font-semibold">BoostEdge</span>
-        <span class="text-slate-400">· Tecnología que se adapta a ti</span>
+        <span class="text-slate-400">· Tu ordenador ideal, a un precio real.</span>
       </div>
       <div class="flex gap-4 text-slate-300">
         <a href="#" class="hover:text-white">Aviso legal</a>
@@ -410,5 +501,36 @@
       </div>
     </div>
   </footer>
+  <script>
+  function addToCart(name, price) {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    // Buscar producto existente
+    let item = cart.find(p => p.name === name);
+
+    if (item) {
+      item.quantity = (item.quantity || 0) + 1; // <- evita undefined
+    } else {
+      cart.push({ name, price, quantity: 1 });
+    }
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+    updateCartBadge();
+  }
+
+  function updateCartBadge() {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const badge = document.getElementById("cart-count");
+
+    if (badge) {
+      const totalQty = cart.reduce((acc, item) => acc + (item.quantity || 0), 0);
+      badge.textContent = totalQty;
+    }
+  }
+
+  updateCartBadge();
+</script>
+
+
 </body>
 </html>
