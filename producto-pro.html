@@ -56,7 +56,16 @@
         <h1 class="text-3xl font-bold text-[#0F2D47] mb-1">BoostEdge Pro</h1>
         <p class="text-[#1FB6FF] font-semibold mb-4">Para empresas y profesionales exigentes</p>
 
-        <p class="text-4xl font-bold mb-6">899 €</p>
+        <div class="mb-6">
+          <p class="text-slate-500 line-through text-lg" id="old-price">
+            899 €
+          </p>
+          <p class="text-4xl font-bold text-[#0F2D47]" id="discounted-price">
+            899 €
+          </p>
+          <p class="text-sm font-semibold text-red-600 mt-1 hidden" id="discount-tag">
+            Oferta Black Friday aplicada
+          </p>
 
         <div class="bg-white rounded-2xl p-4 shadow mb-6">
           <h3 class="font-semibold text-[#0F2D47] mb-1">Descuento por volumen</h3>
@@ -85,6 +94,48 @@
           <li>• Seguridad: TPM 2.0, lector de huellas</li>
           <li>• Conectividad: Thunderbolt 4 · WiFi 6E · BT 5.2</li>
         </ul>
+        <!-- VERIFICACIÓN DE EMPRESA -->
+        <div class="bg-white rounded-2xl p-4 shadow mb-6">
+          <h3 class="font-semibold text-[#0F2D47] mb-2">¿Eres una empresa?</h3>
+          <p class="text-sm text-slate-700 mb-3">
+            Introduce tu CIF y desbloquea <span class="font-bold">condiciones profesionales:</span><br>
+            • Garantía ampliada a precio especial<br>
+            • Servicios de instalación, mantenimiento y soporte avanzado<br>
+            • Acceso a packs corporativos (monitor + periféricos)<br>
+          </p>
+
+          <!-- CAMPO DE CIF -->
+          <div class="flex gap-2 items-center">
+            <input 
+              id="cif-input"
+              type="text"
+              placeholder="Introduce tu CIF (ej. B12345678)"
+              class="flex-1 px-3 py-2 border rounded-lg text-sm"
+            >
+            <button 
+              onclick="validarCIF()"
+              class="px-4 py-2 bg-[#1FB6FF] text-white rounded-lg text-sm font-semibold hover:bg-[#0A73B8] transition">
+              Validar
+            </button>
+          </div>
+
+          <!-- MENSAJE POSVALIDACIÓN -->
+          <p id="cif-status" class="text-sm font-semibold mt-3 hidden"></p>
+        </div>
+
+        <!-- BENEFICIOS PROFESIONALES (OCULTOS AL INICIO) -->
+        <div id="beneficios-empresa" class="bg-white rounded-2xl p-4 shadow mb-6 hidden">
+          <h3 class="font-bold text-[#0F2D47] mb-2">Condiciones profesionales activadas ✔</h3>
+          <p class="text-sm text-slate-700 mb-2">
+            Gracias por verificar tu empresa. Ahora tienes acceso a:
+          </p>
+          <ul class="text-sm text-slate-800 space-y-1">
+            <li>• Garantía profesional ampliada a precio reducido</li>
+            <li>• Servicios de instalación y mantenimiento</li>
+            <li>• Soporte avanzado prioritario</li>
+            <li>• Acceso a packs corporativos</li>
+          </ul>
+        </div>
 
         <!-- BOTÓN AÑADIR -->
         <button 
@@ -104,6 +155,7 @@
         Incluye garantía profesional de 3 años + soporte remoto gratuito durante 6 meses.
       </p>
     </div>
+    </div>
 
         <!-- VALORACIONES -->
     <div class="mt-14">
@@ -119,7 +171,7 @@
           *Algunas de nuestras reseñas*
         </div>
       </div>
-
+      
       <!-- RESEÑAS -->
       <div id="reviews-list">
         <div class="bg-white rounded-2xl p-5 shadow mb-4" data-rating="5">
@@ -204,6 +256,29 @@
 
       calcularValoracionMedia();
     </script>
+    <script>
+    function aplicarPrecioConDescuento() {
+      const precioOriginal = 899;
+      const oldPrice = document.getElementById("old-price");
+      const newPrice = document.getElementById("discounted-price");
+      const discountTag = document.getElementById("discount-tag");
+    
+      const offer = localStorage.getItem("active_offer");
+    
+      if (offer === "black_friday_10") {
+        const precioFinal = Math.round(precioOriginal * 0.9); // 10% descuento
+        oldPrice.textContent = precioOriginal + " €";
+        newPrice.textContent = precioFinal + " €";
+        discountTag.classList.remove("hidden");
+      } else {
+        // Si no hay oferta, se oculta el tachado
+        oldPrice.classList.add("hidden");
+        discountTag.classList.add("hidden");
+        newPrice.textContent = precioOriginal + " €";
+      }
+    }
+    aplicarPrecioConDescuento();
+    </script>
 
   <script>
     function addToCart(name, price) {
@@ -220,6 +295,43 @@
     }
     updateCartCount();
   </script>
+<script>
+function validarCIF() {
+  const cif = document.getElementById("cif-input").value.trim().toUpperCase();
+  const status = document.getElementById("cif-status");
+  const beneficios = document.getElementById("beneficios-empresa");
+
+  // Regex básico para CIF español (empresas)
+  const regexCIF = /^[A-HJNPQRSUVW]\d{7}[0-9A-J]$/;
+
+  if (!regexCIF.test(cif)) {
+    status.textContent = "❌ CIF no válido. Inténtalo de nuevo.";
+    status.className = "text-sm font-semibold mt-3 text-red-600";
+    status.classList.remove("hidden");
+    beneficios.classList.add("hidden");
+    localStorage.removeItem("empresa_validada");
+    return;
+  }
+
+  // CIF válido → activar beneficios
+  status.textContent = "✔ CIF verificado. Condiciones profesionales activadas.";
+  status.className = "text-sm font-semibold mt-3 text-green-600";
+  status.classList.remove("hidden");
+
+  beneficios.classList.remove("hidden");
+
+  // guardar en localStorage
+  localStorage.setItem("empresa_validada", "true");
+  localStorage.setItem("empresa_cif", cif);
+}
+
+// Al cargar la página, si ya estaba validado, mostrar beneficios
+window.addEventListener("load", () => {
+  if (localStorage.getItem("empresa_validada") === "true") {
+    document.getElementById("beneficios-empresa").classList.remove("hidden");
+  }
+});
+</script>
 
 </body>
 </html>
