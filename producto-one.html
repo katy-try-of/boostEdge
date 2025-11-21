@@ -58,10 +58,10 @@
         <!-- PRECIO CON DESCUENTO -->
         <div class="mb-6">
           <p class="text-slate-500 line-through text-lg" id="old-price">
-            549 €
+            900 €
           </p>
           <p class="text-4xl font-bold text-[#0F2D47]" id="discounted-price">
-            549 €
+            900 €
           </p>
           <p class="text-sm font-semibold text-red-600 mt-1 hidden" id="discount-tag">
             Oferta Black Friday aplicada
@@ -108,7 +108,7 @@
 
         <!-- BOTÓN AÑADIR AL CARRITO -->
         <button 
-          onclick="addToCart('BoostEdge One', 549)"
+          onclick="addToCart('BoostEdge One', 900)"
           class="w-full py-3 bg-[#1FB6FF] text-white rounded-full text-lg font-semibold hover:bg-[#0A73B8]"
         >
           Añadir al carrito
@@ -242,7 +242,7 @@
   </script>
 <script>
 function aplicarPrecioConDescuento() {
-  const precioOriginal = 549;
+  const precioOriginal = 900;
   const oldPrice = document.getElementById("old-price");
   const newPrice = document.getElementById("discounted-price");
   const discountTag = document.getElementById("discount-tag");
